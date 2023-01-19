@@ -1,10 +1,10 @@
-import 'main.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-abstract class Event {}
+import 'character_events.dart';
+import 'character_state.dart';
 
-class ClickEvent extends Event {}
 
-class ResetEvent extends Event {}
+
+
 
 class ImpEvent {}
 
@@ -26,14 +26,4 @@ class CounterBloc extends Bloc<Event, CharacterState> {
     emitter(ImpState(_clickCount));
   }
 }
-// class ResetBlock extends Block<Event, State>{
-//
-// }
 
-abstract class CharacterState {}
-
-class ImpState extends CharacterState {
-  ImpState(this.clickCount);
-
-  final int clickCount;
-}
