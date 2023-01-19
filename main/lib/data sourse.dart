@@ -1,3 +1,3 @@
-abstract class DataSourse{}
-
-class CharacterRemoteDataSourse extends DataSourse{}
+// abstract class DataSourse{}
+//
+class CharacterRemoteDataSourse implements CharacterDataSourse{}

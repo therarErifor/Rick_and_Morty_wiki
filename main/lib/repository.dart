@@ -1,5 +1,3 @@
-abstract class Repository{}
-
-class CharacterRepository extends Repository{}
-
-
+abstract class Repositoty {
+  Future<List<Character>>
+}
