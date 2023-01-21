@@ -19,25 +19,34 @@ class CharacterPage extends StatelessWidget {
               ),
               body: Center(
                   child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(height: 10),
                   Text(
-                      'Hello, click on this button\n to add a number to the counter',
+                      'Characters list:',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20,
-                        color: Colors.green,
                       )),
-                  SizedBox(height: 50),
-                  ElevatedButton(
-                      onPressed: () =>
-                          context.read<CounterBloc>().add(ClickEvent()),
-                      child: Text('${impState.clickCount}')),
-                  ElevatedButton(
-                      onPressed: () =>
-                          context.read<CounterBloc>().add(ResetEvent()),
-                      child: Text('Reset the counter'))
+                  SizedBox(height: 10),
+                   Text(
+                            'ID: 1'
+                          ),
+                          Text(
+                                'Name: Rick'
+                              ),
+
+
+
+                  // ElevatedButton(
+                  //     onPressed: () =>
+                  //         context.read<CounterBloc>().add(ClickEvent()),
+                  //     child: Text('${impState.clickCount}')),
+                  // ElevatedButton(
+                  //     onPressed: () =>
+                  //         context.read<CounterBloc>().add(ResetEvent()),
+                  //     child: Text('Reset the counter'))
                 ],
               )));
         }));

@@ -2,10 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'character_events.dart';
 import 'character_state.dart';
 
-
-
-
-
 class ImpEvent {}
 
 class CounterBloc extends Bloc<Event, CharacterState> {
