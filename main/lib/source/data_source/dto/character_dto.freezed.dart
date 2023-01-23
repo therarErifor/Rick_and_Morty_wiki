@@ -22,6 +22,7 @@ CharacterDto _$CharacterDtoFromJson(Map<String, dynamic> json) {
 mixin _$CharacterDto {
   int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $CharacterDtoCopyWith<$Res> {
           CharacterDto value, $Res Function(CharacterDto) then) =
       _$CharacterDtoCopyWithImpl<$Res, CharacterDto>;
   @useResult
-  $Res call({int? id, String name});
+  $Res call({int? id, String name, String image});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$CharacterDtoCopyWithImpl<$Res, $Val extends CharacterDto>
   $Res call({
     Object? id = freezed,
     Object? name = null,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -62,6 +64,10 @@ class _$CharacterDtoCopyWithImpl<$Res, $Val extends CharacterDto>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -75,7 +81,7 @@ abstract class _$$_CharacterDtoCopyWith<$Res>
       __$$_CharacterDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String name});
+  $Res call({int? id, String name, String image});
 }
 
 /// @nodoc
@@ -91,6 +97,7 @@ class __$$_CharacterDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = null,
+    Object? image = null,
   }) {
     return _then(_$_CharacterDto(
       id: freezed == id
@@ -101,6 +108,10 @@ class __$$_CharacterDtoCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -108,7 +119,8 @@ class __$$_CharacterDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CharacterDto implements _CharacterDto {
-  const _$_CharacterDto({required this.id, required this.name});
+  const _$_CharacterDto(
+      {required this.id, required this.name, required this.image});
 
   factory _$_CharacterDto.fromJson(Map<String, dynamic> json) =>
       _$$_CharacterDtoFromJson(json);
@@ -117,10 +129,12 @@ class _$_CharacterDto implements _CharacterDto {
   final int? id;
   @override
   final String name;
+  @override
+  final String image;
 
   @override
   String toString() {
-    return 'CharacterDto(id: $id, name: $name)';
+    return 'CharacterDto(id: $id, name: $name, image: $image)';
   }
 
   @override
@@ -129,12 +143,13 @@ class _$_CharacterDto implements _CharacterDto {
         (other.runtimeType == runtimeType &&
             other is _$_CharacterDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name);
+  int get hashCode => Object.hash(runtimeType, id, name, image);
 
   @JsonKey(ignore: true)
   @override
@@ -152,7 +167,9 @@ class _$_CharacterDto implements _CharacterDto {
 
 abstract class _CharacterDto implements CharacterDto {
   const factory _CharacterDto(
-      {required final int? id, required final String name}) = _$_CharacterDto;
+      {required final int? id,
+      required final String name,
+      required final String image}) = _$_CharacterDto;
 
   factory _CharacterDto.fromJson(Map<String, dynamic> json) =
       _$_CharacterDto.fromJson;
@@ -161,6 +178,8 @@ abstract class _CharacterDto implements CharacterDto {
   int? get id;
   @override
   String get name;
+  @override
+  String get image;
   @override
   @JsonKey(ignore: true)
   _$$_CharacterDtoCopyWith<_$_CharacterDto> get copyWith =>

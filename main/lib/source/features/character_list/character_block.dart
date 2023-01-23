@@ -8,8 +8,8 @@ class CounterBloc extends Bloc<Event, CharacterState> {
   int _clickCount = 0;
 
   CounterBloc() : super(ImpState(0)) {
-    on<ClickEvent>(onClick);
-    on<ResetEvent>(resetCount);
+    // on<ClickEvent>(onClick);
+    // on<ResetEvent>(resetCount);
   }
 
   void onClick(ClickEvent event, Emitter<CharacterState> emitter) {

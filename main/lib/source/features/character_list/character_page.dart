@@ -37,8 +37,6 @@ class CharacterPage extends StatelessWidget {
                                 'Name: Rick'
                               ),
 
-
-
                   // ElevatedButton(
                   //     onPressed: () =>
                   //         context.read<CounterBloc>().add(ClickEvent()),
