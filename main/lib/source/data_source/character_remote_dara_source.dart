@@ -1,4 +1,4 @@
-import 'package:rick_and_morty_wiki/source/data_source/data_sourse.dart';
+import 'package:rick_and_morty_wiki/source/data_source/character_data_sourse.dart';
 import 'package:rick_and_morty_wiki/source/data_source/dto/character_dto.dart';
 import 'package:rick_and_morty_wiki/source/data_source/dto/character_detailed_dto.dart';
 import 'package:dio/dio.dart';

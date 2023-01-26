@@ -1,5 +1,2 @@
-abstract class Event {}
+abstract class CharacterEvent {}
 
-class ClickEvent extends Event {}
-
-class ResetEvent extends Event {}

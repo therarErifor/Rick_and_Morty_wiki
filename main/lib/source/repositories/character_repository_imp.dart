@@ -2,9 +2,9 @@ import 'package:rick_and_morty_wiki/source/entities/character.dart';
 import 'package:rick_and_morty_wiki/source/entities/character_detailed.dart';
 import 'package:rick_and_morty_wiki/source/repositories/character_repository.dart';
 
-import '../data_source/data_sourse.dart';
+import '../data_source/character_data_sourse.dart';
 
-class CharacterRepositoryImp extends CharacterRepositoty {
+class CharacterRepositoryImp extends CharacterRepository {
   final CharacterDataSource _characterDataSource;
 
   CharacterRepositoryImp(CharacterDataSource characterDataSource)
@@ -13,10 +13,11 @@ class CharacterRepositoryImp extends CharacterRepositoty {
   @override
   Future<List<Character>> getCharacterAsync(int pageNumber) async {
     var dtoList = await _characterDataSource.getCharactersAsync(pageNumber);
-    return dtoList
-        .map((dto) =>
-            Character(id: dto.id ?? 0, name: dto.name, imageUrl: dto.image))
-        .toList();
+    return dtoList.map((dto) =>
+            Character(
+                id: dto.id ?? 0,
+                name: dto.name,
+                imageUrl: dto.image)).toList();
   }
 
 //id ?? 0 Сравнение с нулем (погугли потом)
