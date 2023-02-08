@@ -17,14 +17,14 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     _init();
     on((event, emit) {
       if (event is LoadMoreEvent) {
-        _loadNectPage();
+        _loadNextPage();
       }
     }
     );
   }
 
 
-void _loadNectPage() async {
+void _loadNextPage() async {
   var nextPageNumber = _currentPage + 1;
 
   if (nextPageNumber < _pagesCount) {

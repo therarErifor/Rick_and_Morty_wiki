@@ -5,6 +5,7 @@ import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.da
 import 'character_block.dart';
 import 'character_detailed_block.dart';
 import 'character_detailed_event.dart';
+import 'character_detailed_page_display.dart';
 import 'character_detailed_state.dart';
 import 'character_events.dart';
 import 'character_state.dart';
@@ -85,7 +86,7 @@ class CharacterPage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (index) => CharacterDetailedPage()),
+              MaterialPageRoute(builder: (index) => CharacterDetailedPage(index)),
             );
             //_characterDetailedPage();
           },
@@ -96,49 +97,6 @@ class CharacterPage extends StatelessWidget {
   }
 }
 
-class CharacterDetailedPage extends StatelessWidget {
-  //const CharacterDetailedPage();
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<CharacterDetailedBloc>(
-      create: (_) => CharacterDetailedBloc(
-          CharacterRepositoryImp(CharacterRemoteDataSource())),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('about the character'),
-        ),
-        body: BlocBuilder<CharacterDetailedBloc, CharacterDetailedState>(
-          builder: _BuildCharacterDetailed,
-        ),
-      ),
-    );
-  }
-}
 
-Widget _BuildCharacterDetailed(
-    BuildContext context, CharacterDetailedState state) {
-  if (state is InitCharacterDetailedState) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-  if (state is CharacterDetailedLoadState) {
-    //CharacterDetailedEvent(index)
 
-    var characterDetailed = state.characterDetailed;
-    Card(
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Image.network(characterDetailed.imageUrl),
-            Text('Name: ' + characterDetailed.name),
-            Text('Status: ' + characterDetailed.status),
-            Text('Gender: ' + characterDetailed.gender),
-            Text('Location: ' + characterDetailed.locationName),
-          ]),
-    );
-  }
-
-  return SizedBox.shrink();
-}
