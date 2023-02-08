@@ -1,7 +1,8 @@
 import '../entities/character.dart';
 import '../entities/character_detailed.dart';
+import '../entities/character_page.dart';
 
 abstract class CharacterRepository {
-  Future<List<Character>> getCharacterAsync(int pageNumber);
+  Future<CharacterPage> getCharacterAsync(int pageNumber);
   Future<CharacterDetailed> getDetailedAsync(String id);
 }
