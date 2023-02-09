@@ -21,6 +21,7 @@ PageDto _$PageDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PageDto {
   List<CharacterDto> get results => throw _privateConstructorUsedError;
+  InfoDto get info => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +33,9 @@ abstract class $PageDtoCopyWith<$Res> {
   factory $PageDtoCopyWith(PageDto value, $Res Function(PageDto) then) =
       _$PageDtoCopyWithImpl<$Res, PageDto>;
   @useResult
-  $Res call({List<CharacterDto> results});
+  $Res call({List<CharacterDto> results, InfoDto info});
+
+  $InfoDtoCopyWith<$Res> get info;
 }
 
 /// @nodoc
@@ -49,13 +52,26 @@ class _$PageDtoCopyWithImpl<$Res, $Val extends PageDto>
   @override
   $Res call({
     Object? results = null,
+    Object? info = null,
   }) {
     return _then(_value.copyWith(
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<CharacterDto>,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as InfoDto,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InfoDtoCopyWith<$Res> get info {
+    return $InfoDtoCopyWith<$Res>(_value.info, (value) {
+      return _then(_value.copyWith(info: value) as $Val);
+    });
   }
 }
 
@@ -66,7 +82,10 @@ abstract class _$$_PageDtoCopyWith<$Res> implements $PageDtoCopyWith<$Res> {
       __$$_PageDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CharacterDto> results});
+  $Res call({List<CharacterDto> results, InfoDto info});
+
+  @override
+  $InfoDtoCopyWith<$Res> get info;
 }
 
 /// @nodoc
@@ -80,12 +99,17 @@ class __$$_PageDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? results = null,
+    Object? info = null,
   }) {
     return _then(_$_PageDto(
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
               as List<CharacterDto>,
+      info: null == info
+          ? _value.info
+          : info // ignore: cast_nullable_to_non_nullable
+              as InfoDto,
     ));
   }
 }
@@ -93,7 +117,8 @@ class __$$_PageDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PageDto implements _PageDto {
-  const _$_PageDto({required final List<CharacterDto> results})
+  const _$_PageDto(
+      {required final List<CharacterDto> results, required this.info})
       : _results = results;
 
   factory _$_PageDto.fromJson(Map<String, dynamic> json) =>
@@ -108,8 +133,11 @@ class _$_PageDto implements _PageDto {
   }
 
   @override
+  final InfoDto info;
+
+  @override
   String toString() {
-    return 'PageDto(results: $results)';
+    return 'PageDto(results: $results, info: $info)';
   }
 
   @override
@@ -117,13 +145,14 @@ class _$_PageDto implements _PageDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PageDto &&
-            const DeepCollectionEquality().equals(other._results, _results));
+            const DeepCollectionEquality().equals(other._results, _results) &&
+            (identical(other.info, info) || other.info == info));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_results), info);
 
   @JsonKey(ignore: true)
   @override
@@ -140,13 +169,16 @@ class _$_PageDto implements _PageDto {
 }
 
 abstract class _PageDto implements PageDto {
-  const factory _PageDto({required final List<CharacterDto> results}) =
-      _$_PageDto;
+  const factory _PageDto(
+      {required final List<CharacterDto> results,
+      required final InfoDto info}) = _$_PageDto;
 
   factory _PageDto.fromJson(Map<String, dynamic> json) = _$_PageDto.fromJson;
 
   @override
   List<CharacterDto> get results;
+  @override
+  InfoDto get info;
   @override
   @JsonKey(ignore: true)
   _$$_PageDtoCopyWith<_$_PageDto> get copyWith =>

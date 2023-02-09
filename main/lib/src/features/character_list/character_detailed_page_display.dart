@@ -13,8 +13,9 @@ import '../../entities/character.dart';
 import 'character_detailed_block.dart';
 
 class CharacterDetailedPage extends StatelessWidget {
+  final int _id;
   //const CharacterDetailedPage();
-  CharacterDetailedPage(index){
+  CharacterDetailedPage(int id):_id = id{
 
   }
 
@@ -22,7 +23,7 @@ class CharacterDetailedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<CharacterDetailedBloc>(
       create: (_) => CharacterDetailedBloc(
-          CharacterRepositoryImp(CharacterRemoteDataSource())),
+          CharacterRepositoryImp(CharacterRemoteDataSource()), _id),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('about the character'),
@@ -44,7 +45,7 @@ class CharacterDetailedPage extends StatelessWidget {
       //CharacterDetailedEvent(index)
 
       var characterDetailed = state.characterDetailed;
-      Card(
+      return Card(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

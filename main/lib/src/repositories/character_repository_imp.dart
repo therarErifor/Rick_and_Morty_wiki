@@ -1,10 +1,11 @@
 import 'package:rick_and_morty_wiki/src/entities/character.dart';
 import 'package:rick_and_morty_wiki/src/entities/character_detailed.dart';
-import 'package:rick_and_morty_wiki/src/entities/page_info.dart';
+
 import 'package:rick_and_morty_wiki/src/repositories/character_repository.dart';
 
 import '../data_source/character_data_source.dart';
 
+import '../data_source/dto/info_dto.dart';
 import '../entities/character_page.dart';
 import '../entities/info.dart';
 
@@ -19,26 +20,17 @@ class CharacterRepositoryImp extends CharacterRepository {
   @override
   Future<CharacterPage> getCharacterAsync(int pageNumber) async {
 
-    var dtoList = await _characterDataSource.getCharactersAsync(pageNumber);
-    var character = dtoList
-        .map((dto) =>
+    var pageDto = await _characterDataSource.getPageAsync(pageNumber);
+    var character = pageDto
+        .results.map((dto) =>
             Character(id: dto.id ?? 0, name: dto.name, imageUrl: dto.image))
         .toList();
-    return CharacterPage(character: character, pagesCount: 42);
-  }
-
-  @override
-  Future<PageInfo> getInfoAsync() async {
-    var infoDtoList = await _characterDataSource.getInfoAsync();
-    var info = infoDtoList.map((dto) =>
-        Info(count: dto.count ?? 0, pages: dto.pages ?? 0))
-        .toList();
-    return PageInfo(info: info);
+    return CharacterPage(character: character, pagesCount: pageDto.info.pages);
   }
 
 //id ?? 0 Сравнение с нулем (погугли потом)
   @override
-  Future<CharacterDetailed> getDetailedAsync(String id) async {
+  Future<CharacterDetailed> getDetailedAsync(int id) async {
     var dtoCharacterDetailed =
         await _characterDataSource.getCharacterDetailedAsync(id);
 
@@ -50,16 +42,5 @@ class CharacterRepositoryImp extends CharacterRepository {
         gender: dtoCharacterDetailed.gender,
         locationName: dtoCharacterDetailed.location.name);
   }
-
-  // @override
-  // Future<Info> InfoAsync() async {
-  //   var dtoPageInfo = await _characterDataSource.getPageInfoAsync();
-  //   return PageInfo(
-  //       count: dtoPageInfo.count ?? 0,
-  //       pages: dtoPageInfo.pages ?? 0);
-  // }
-
-
-
 
 }

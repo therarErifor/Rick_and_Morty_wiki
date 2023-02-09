@@ -86,7 +86,7 @@ class CharacterPage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (index) => CharacterDetailedPage(index)),
+              MaterialPageRoute(builder: (_) => CharacterDetailedPage(character[index].id)),
             );
             //_characterDetailedPage();
           },

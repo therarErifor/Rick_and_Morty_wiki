@@ -1,9 +1,7 @@
 class Info {
-  final int count;
   final int pages;
-
-  const Info(
-      {required this.count,
+  Info(
+      {
         required this.pages,
       });
 }

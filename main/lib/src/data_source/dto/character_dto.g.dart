@@ -8,7 +8,7 @@ part of 'character_dto.dart';
 
 _$_CharacterDto _$$_CharacterDtoFromJson(Map<String, dynamic> json) =>
     _$_CharacterDto(
-      id: json['id'] as int?,
+      id: json['id'] as int,
       name: json['name'] as String,
       image: json['image'] as String,
     );
