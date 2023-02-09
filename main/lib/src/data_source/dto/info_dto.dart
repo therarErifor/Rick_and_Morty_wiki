@@ -6,8 +6,7 @@ part 'info_dto.g.dart';
 
 @freezed
 class InfoDto with _$InfoDto {
-  const factory InfoDto(
-      {required int pages}) = _InfoDto;
+  const factory InfoDto({required int pages}) = _InfoDto;
 
   factory InfoDto.fromJson(Map<String, dynamic> json) =>
       _$InfoDtoFromJson(json);

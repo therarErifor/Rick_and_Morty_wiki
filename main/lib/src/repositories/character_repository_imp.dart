@@ -5,11 +5,7 @@ import 'package:rick_and_morty_wiki/src/repositories/character_repository.dart';
 
 import '../data_source/character_data_source.dart';
 
-import '../data_source/dto/info_dto.dart';
 import '../entities/character_page.dart';
-import '../entities/info.dart';
-
-
 
 class CharacterRepositoryImp extends CharacterRepository {
   final CharacterDataSource _characterDataSource;
@@ -19,16 +15,15 @@ class CharacterRepositoryImp extends CharacterRepository {
 
   @override
   Future<CharacterPage> getCharacterAsync(int pageNumber) async {
-
     var pageDto = await _characterDataSource.getPageAsync(pageNumber);
-    var character = pageDto
-        .results.map((dto) =>
+    var character = pageDto.results
+        .map((dto) =>
             Character(id: dto.id ?? 0, name: dto.name, imageUrl: dto.image))
         .toList();
     return CharacterPage(character: character, pagesCount: pageDto.info.pages);
   }
 
-//id ?? 0 Сравнение с нулем (погугли потом)
+//id ?? 0 Сравнение с нулем
   @override
   Future<CharacterDetailed> getDetailedAsync(int id) async {
     var dtoCharacterDetailed =
@@ -42,5 +37,4 @@ class CharacterRepositoryImp extends CharacterRepository {
         gender: dtoCharacterDetailed.gender,
         locationName: dtoCharacterDetailed.location.name);
   }
-
 }

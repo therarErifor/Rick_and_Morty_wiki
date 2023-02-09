@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'character_location.dart';
+
 part 'character_detailed_dto.freezed.dart';
+
 part 'character_detailed_dto.g.dart';
 
 @freezed

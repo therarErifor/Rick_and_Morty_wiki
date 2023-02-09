@@ -2,22 +2,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
-import 'character_block.dart';
-import 'character_detailed_block.dart';
-import 'character_detailed_event.dart';
-import 'character_detailed_state.dart';
-import 'character_events.dart';
-import 'character_state.dart';
-import '../../entities/character.dart';
 
 import 'character_detailed_block.dart';
+
+import 'character_detailed_state.dart';
 
 class CharacterDetailedPage extends StatelessWidget {
   final int _id;
-  //const CharacterDetailedPage();
-  CharacterDetailedPage(int id):_id = id{
 
-  }
+  CharacterDetailedPage(int id) : _id = id {}
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +27,7 @@ class CharacterDetailedPage extends StatelessWidget {
       ),
     );
   }
+
   Widget _BuildCharacterDetailed(
       BuildContext context, CharacterDetailedState state) {
     if (state is InitCharacterDetailedState) {
@@ -42,8 +36,6 @@ class CharacterDetailedPage extends StatelessWidget {
       );
     }
     if (state is CharacterDetailedLoadState) {
-      //CharacterDetailedEvent(index)
-
       var characterDetailed = state.characterDetailed;
       return Card(
         child: Column(

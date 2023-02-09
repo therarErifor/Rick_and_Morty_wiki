@@ -1,8 +1,6 @@
-import '../data_source/dto/character_location.dart';
 import 'character.dart';
 
 class CharacterDetailed extends Character {
-
   CharacterDetailed(
       {required super.id,
       required super.name,

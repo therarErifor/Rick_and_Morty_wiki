@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
 import 'character_block.dart';
-import 'character_detailed_block.dart';
-import 'character_detailed_event.dart';
 import 'character_detailed_page_display.dart';
-import 'character_detailed_state.dart';
 import 'character_events.dart';
 import 'character_state.dart';
 import '../../entities/character.dart';
@@ -86,7 +83,8 @@ class CharacterPage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => CharacterDetailedPage(character[index].id)),
+              MaterialPageRoute(
+                  builder: (_) => CharacterDetailedPage(character[index].id)),
             );
             //_characterDetailedPage();
           },
@@ -96,7 +94,3 @@ class CharacterPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
