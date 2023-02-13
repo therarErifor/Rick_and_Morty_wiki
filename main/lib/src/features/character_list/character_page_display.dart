@@ -18,7 +18,8 @@ class CharacterPage extends StatelessWidget {
       ..addListener(() {
         //двойная точка - это конструкция
         var extentPosition = _scrollController.position.extentAfter;
-        if (extentPosition < 300) {
+
+        if (extentPosition < 400) {
           _bloc?.add(LoadMoreEvent());
         }
       });
@@ -46,8 +47,7 @@ class CharacterPage extends StatelessWidget {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    }
-    if (state is CharacterListState) {
+    } else if (state is CharacterListState) {
       return Column(
         children: [
           Expanded(
@@ -78,8 +78,8 @@ class CharacterPage extends StatelessWidget {
               EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
           leading: Image.network(character[index].imageUrl),
           title: Text(
-            character[index].name,
-          ),
+              character[index].id.toString() + '. ' + character[index].name,
+              style: TextStyle(color: Colors.blueGrey)),
           onTap: () {
             Navigator.push(
               context,

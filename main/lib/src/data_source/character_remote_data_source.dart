@@ -20,12 +20,6 @@ class CharacterRemoteDataSource implements CharacterDataSource {
   }
 
   @override
-  Future<InfoDto> getInfoPagesAsync() async {
-    var response = await _dioClient.get('/api/character');
-    return InfoDto.fromJson(response.data);
-  }
-
-  @override
   Future<CharacterDetailedDto> getCharacterDetailedAsync(int id) async {
     var response = await _dioClient.get('/api/character/$id');
     return CharacterDetailedDto.fromJson(response.data);

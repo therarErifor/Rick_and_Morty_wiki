@@ -22,20 +22,26 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   }
 
   void _loadNextPage() async {
+    if (state is CharacterNextPageLoading) {
+      return;
+    }
+
     var nextPageNumber = _currentPage + 1;
 
     if (nextPageNumber < _pagesCount) {
       emit(CharacterNextPageLoading(character: _characterLoaded));
       var characterPage =
           await _characterRepository.getCharacterAsync(nextPageNumber);
+
       _currentPage = nextPageNumber;
       _characterLoaded.addAll(characterPage.character);
+
       emit(CharacterLoadState(character: _characterLoaded));
     }
   }
 
   void _init() async {
-    _currentPage = 0;
+    _currentPage = 1;
     var characterPage =
         await _characterRepository.getCharacterAsync(_currentPage);
     _pagesCount = characterPage.pagesCount;

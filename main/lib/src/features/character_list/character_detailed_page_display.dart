@@ -37,16 +37,38 @@ class CharacterDetailedPage extends StatelessWidget {
     }
     if (state is CharacterDetailedLoadState) {
       var characterDetailed = state.characterDetailed;
-      return Card(
-        child: Column(
+      return Container(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Image.network(characterDetailed.imageUrl),
-              Text('Name: ' + characterDetailed.name),
-              Text('Status: ' + characterDetailed.status),
-              Text('Gender: ' + characterDetailed.gender),
-              Text('Location: ' + characterDetailed.locationName),
-            ]),
+              SizedBox(height: 15),
+              Text('№' + characterDetailed.id.toString(),
+                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
+              SizedBox(height: 15),
+              Text('Name:'),
+              Text(characterDetailed.name,
+                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
+              SizedBox(height: 15),
+              Text('Status:'),
+              Text(characterDetailed.status,
+                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
+              SizedBox(height: 15),
+              Text('Gender:'),
+              Text(characterDetailed.gender,
+                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
+              SizedBox(height: 15),
+              Text('Last known location:'),
+              Text(characterDetailed.locationName,
+                  style: TextStyle(fontSize: 22, color: Colors.blueGrey),
+                  softWrap: true),
+            ],
+          ),
+        ),
       );
     }
 

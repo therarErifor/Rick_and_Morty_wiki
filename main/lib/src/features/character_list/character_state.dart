@@ -15,5 +15,6 @@ class CharacterLoadState extends CharacterListState {
 }
 
 class CharacterNextPageLoading extends CharacterListState {
+
   CharacterNextPageLoading({required super.character});
 }
