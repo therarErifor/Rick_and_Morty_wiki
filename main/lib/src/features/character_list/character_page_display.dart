@@ -19,7 +19,7 @@ class CharacterPage extends StatelessWidget {
         //двойная точка - это конструкция
         var extentPosition = _scrollController.position.extentAfter;
 
-        if (extentPosition < 400) {
+        if (extentPosition < 600) {
           _bloc?.add(LoadMoreEvent());
         }
       });
@@ -49,9 +49,10 @@ class CharacterPage extends StatelessWidget {
       );
     } else if (state is CharacterListState) {
       return Column(
-        children: [
+        children: <Widget>[
           Expanded(
             child: _buildCharacterList(context, state.character),
+            flex: 3,
           ),
           if (state is CharacterNextPageLoading)
             const Padding(
@@ -67,29 +68,41 @@ class CharacterPage extends StatelessWidget {
     return const SizedBox.shrink();
   }
 
-  ListView _buildCharacterList(
-      BuildContext context, List<Character> character) {
+  Widget _buildImage() {
+    return Image.asset('assets/images/header_image.png');
+  }
+
+  Widget _buildCharacterList(BuildContext context, List<Character> character) {
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.only(left: 10, right: 10),
-      itemBuilder: (_, index) => Card(
-        child: ListTile(
-          contentPadding:
-              EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
-          leading: Image.network(character[index].imageUrl),
-          title: Text(
-              character[index].id.toString() + '. ' + character[index].name,
-              style: TextStyle(color: Colors.blueGrey)),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => CharacterDetailedPage(character[index].id)),
-            );
-            //_characterDetailedPage();
-          },
-        ),
-      ),
+      itemBuilder: (_, index) {
+        if (index == 0) {
+          return Column(children: [
+            Image.asset('assets/images/header_image.png'),
+          ]);
+        }
+        return Card(
+          child: ListTile(
+            contentPadding:
+                EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+            leading: Image.network(character[index - 1].imageUrl),
+            title: Text(
+                character[index - 1].id.toString() +
+                    '. ' +
+                    character[index - 1].name,
+                style: TextStyle(color: Colors.blueGrey)),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        CharacterDetailedPage(character[index - 1].id)),
+              );
+            },
+          ),
+        );
+      },
       itemCount: character.length,
     );
   }
