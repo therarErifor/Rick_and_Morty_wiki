@@ -11,7 +11,7 @@ class RickAndMortyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Rick and Morty Wiki',
         theme: ThemeData(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.blueGrey,
         ),
         home: CharacterPage());
   }

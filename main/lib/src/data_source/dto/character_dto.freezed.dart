@@ -20,7 +20,7 @@ CharacterDto _$CharacterDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CharacterDto {
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $CharacterDtoCopyWith<$Res> {
           CharacterDto value, $Res Function(CharacterDto) then) =
       _$CharacterDtoCopyWithImpl<$Res, CharacterDto>;
   @useResult
-  $Res call({int? id, String name, String image});
+  $Res call({int id, String name, String image});
 }
 
 /// @nodoc
@@ -52,15 +52,15 @@ class _$CharacterDtoCopyWithImpl<$Res, $Val extends CharacterDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = null,
     Object? image = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,7 @@ abstract class _$$_CharacterDtoCopyWith<$Res>
       __$$_CharacterDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String name, String image});
+  $Res call({int id, String name, String image});
 }
 
 /// @nodoc
@@ -95,15 +95,15 @@ class __$$_CharacterDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? name = null,
     Object? image = null,
   }) {
     return _then(_$_CharacterDto(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ class _$_CharacterDto implements _CharacterDto {
       _$$_CharacterDtoFromJson(json);
 
   @override
-  final int? id;
+  final int id;
   @override
   final String name;
   @override
@@ -167,7 +167,7 @@ class _$_CharacterDto implements _CharacterDto {
 
 abstract class _CharacterDto implements CharacterDto {
   const factory _CharacterDto(
-      {required final int? id,
+      {required final int id,
       required final String name,
       required final String image}) = _$_CharacterDto;
 
@@ -175,7 +175,7 @@ abstract class _CharacterDto implements CharacterDto {
       _$_CharacterDto.fromJson;
 
   @override
-  int? get id;
+  int get id;
   @override
   String get name;
   @override

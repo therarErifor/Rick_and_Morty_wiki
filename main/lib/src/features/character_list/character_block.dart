@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../entities/character.dart';
-import '../../entities/character_page.dart';
 import '../../repositories/character_repository.dart';
 import 'character_events.dart';
 import 'character_state.dart';
@@ -8,7 +7,7 @@ import 'character_state.dart';
 class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   final CharacterRepository _characterRepository;
   late int _currentPage; //текущая страница
-  late int _pagesCount;  //количество страниц
+  late int _pagesCount; //количество страниц
   late List<Character> _characterLoaded = [];
 
   CharacterBloc(CharacterRepository characterRepository)
@@ -19,29 +18,34 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       if (event is LoadMoreEvent) {
         _loadNextPage();
       }
-    }
-    );
+    });
   }
 
+  void _loadNextPage() async {
+    if (state is CharacterNextPageLoading) {
+      return;
+    }
 
-void _loadNextPage() async {
-  var nextPageNumber = _currentPage + 1;
+    var nextPageNumber = _currentPage + 1;
 
-  if (nextPageNumber < _pagesCount) {
-    emit(CharacterNextPageLoading(character: _characterLoaded));
-    var characterPage = await _characterRepository.getCharacterAsync(
-        nextPageNumber);
-    _currentPage = nextPageNumber;
+    if (nextPageNumber < _pagesCount) {
+      emit(CharacterNextPageLoading(character: _characterLoaded));
+      var characterPage =
+          await _characterRepository.getCharacterAsync(nextPageNumber);
+
+      _currentPage = nextPageNumber;
+      _characterLoaded.addAll(characterPage.character);
+
+      emit(CharacterLoadState(character: _characterLoaded));
+    }
+  }
+
+  void _init() async {
+    _currentPage = 1;
+    var characterPage =
+        await _characterRepository.getCharacterAsync(_currentPage);
+    _pagesCount = characterPage.pagesCount;
     _characterLoaded.addAll(characterPage.character);
     emit(CharacterLoadState(character: _characterLoaded));
   }
 }
-
-void _init() async {
-  _currentPage = 0;
-  var characterPage = await _characterRepository.getCharacterAsync(
-      _currentPage);
-  _pagesCount = characterPage.pagesCount;
-  _characterLoaded.addAll(characterPage.character);
-  emit(CharacterLoadState(character: _characterLoaded));
-}}

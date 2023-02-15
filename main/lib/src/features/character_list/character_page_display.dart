@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
 import 'character_block.dart';
-import 'character_detailed_block.dart';
-import 'character_detailed_event.dart';
 import 'character_detailed_page_display.dart';
-import 'character_detailed_state.dart';
 import 'character_events.dart';
 import 'character_state.dart';
 import '../../entities/character.dart';
@@ -21,7 +18,8 @@ class CharacterPage extends StatelessWidget {
       ..addListener(() {
         //двойная точка - это конструкция
         var extentPosition = _scrollController.position.extentAfter;
-        if (extentPosition < 300) {
+
+        if (extentPosition < 400) {
           _bloc?.add(LoadMoreEvent());
         }
       });
@@ -49,8 +47,7 @@ class CharacterPage extends StatelessWidget {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    }
-    if (state is CharacterListState) {
+    } else if (state is CharacterListState) {
       return Column(
         children: [
           Expanded(
@@ -81,12 +78,13 @@ class CharacterPage extends StatelessWidget {
               EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
           leading: Image.network(character[index].imageUrl),
           title: Text(
-            character[index].name,
-          ),
+              character[index].id.toString() + '. ' + character[index].name,
+              style: TextStyle(color: Colors.blueGrey)),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (index) => CharacterDetailedPage(index)),
+              MaterialPageRoute(
+                  builder: (_) => CharacterDetailedPage(character[index].id)),
             );
             //_characterDetailedPage();
           },
@@ -96,7 +94,3 @@ class CharacterPage extends StatelessWidget {
     );
   }
 }
-
-
-
-

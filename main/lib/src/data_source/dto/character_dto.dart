@@ -7,7 +7,7 @@ part 'character_dto.g.dart';
 @freezed
 class CharacterDto with _$CharacterDto {
   const factory CharacterDto(
-      {required int? id,
+      {required int id,
       required String name,
       required String image}) = _CharacterDto;
 

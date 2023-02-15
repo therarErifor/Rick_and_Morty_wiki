@@ -20,8 +20,7 @@ InfoDto _$InfoDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$InfoDto {
-  int? get count => throw _privateConstructorUsedError;
-  int? get pages => throw _privateConstructorUsedError;
+  int get pages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +32,7 @@ abstract class $InfoDtoCopyWith<$Res> {
   factory $InfoDtoCopyWith(InfoDto value, $Res Function(InfoDto) then) =
       _$InfoDtoCopyWithImpl<$Res, InfoDto>;
   @useResult
-  $Res call({int? count, int? pages});
+  $Res call({int pages});
 }
 
 /// @nodoc
@@ -49,18 +48,13 @@ class _$InfoDtoCopyWithImpl<$Res, $Val extends InfoDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = freezed,
-    Object? pages = freezed,
+    Object? pages = null,
   }) {
     return _then(_value.copyWith(
-      count: freezed == count
-          ? _value.count
-          : count // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pages: freezed == pages
+      pages: null == pages
           ? _value.pages
           : pages // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
   }
 }
@@ -72,7 +66,7 @@ abstract class _$$_InfoDtoCopyWith<$Res> implements $InfoDtoCopyWith<$Res> {
       __$$_InfoDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? count, int? pages});
+  $Res call({int pages});
 }
 
 /// @nodoc
@@ -85,18 +79,13 @@ class __$$_InfoDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = freezed,
-    Object? pages = freezed,
+    Object? pages = null,
   }) {
     return _then(_$_InfoDto(
-      count: freezed == count
-          ? _value.count
-          : count // ignore: cast_nullable_to_non_nullable
-              as int?,
-      pages: freezed == pages
+      pages: null == pages
           ? _value.pages
           : pages // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -104,19 +93,17 @@ class __$$_InfoDtoCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_InfoDto implements _InfoDto {
-  const _$_InfoDto({required this.count, required this.pages});
+  const _$_InfoDto({required this.pages});
 
   factory _$_InfoDto.fromJson(Map<String, dynamic> json) =>
       _$$_InfoDtoFromJson(json);
 
   @override
-  final int? count;
-  @override
-  final int? pages;
+  final int pages;
 
   @override
   String toString() {
-    return 'InfoDto(count: $count, pages: $pages)';
+    return 'InfoDto(pages: $pages)';
   }
 
   @override
@@ -124,13 +111,12 @@ class _$_InfoDto implements _InfoDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InfoDto &&
-            (identical(other.count, count) || other.count == count) &&
             (identical(other.pages, pages) || other.pages == pages));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, count, pages);
+  int get hashCode => Object.hash(runtimeType, pages);
 
   @JsonKey(ignore: true)
   @override
@@ -147,15 +133,12 @@ class _$_InfoDto implements _InfoDto {
 }
 
 abstract class _InfoDto implements InfoDto {
-  const factory _InfoDto(
-      {required final int? count, required final int? pages}) = _$_InfoDto;
+  const factory _InfoDto({required final int pages}) = _$_InfoDto;
 
   factory _InfoDto.fromJson(Map<String, dynamic> json) = _$_InfoDto.fromJson;
 
   @override
-  int? get count;
-  @override
-  int? get pages;
+  int get pages;
   @override
   @JsonKey(ignore: true)
   _$$_InfoDtoCopyWith<_$_InfoDto> get copyWith =>
