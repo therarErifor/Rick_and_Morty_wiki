@@ -1,6 +1,9 @@
 import 'package:rick_and_morty_wiki/src/data_source/character_data_source.dart';
 import 'package:rick_and_morty_wiki/src/data_source/dto/character_detailed_dto.dart';
 import 'package:dio/dio.dart';
+import 'package:rick_and_morty_wiki/src/data_source/character_data_source.dart';
+import 'package:rick_and_morty_wiki/src/data_source/dto/character_detailed_dto.dart';
+import 'package:rick_and_morty_wiki/src/data_source/dto/character_dto.dart';
 import 'package:rick_and_morty_wiki/src/data_source/dto/info_dto.dart';
 
 import 'dto/page_dto.dart';

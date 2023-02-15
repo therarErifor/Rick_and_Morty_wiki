@@ -4,7 +4,6 @@ import 'package:rick_and_morty_wiki/src/entities/character_detailed.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository.dart';
 
 import '../data_source/character_data_source.dart';
-
 import '../entities/character_page.dart';
 
 class CharacterRepositoryImp extends CharacterRepository {
