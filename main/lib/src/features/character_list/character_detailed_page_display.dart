@@ -38,36 +38,100 @@ class CharacterDetailedPage extends StatelessWidget {
     if (state is CharacterDetailedLoadState) {
       var characterDetailed = state.characterDetailed;
       return Container(
+        width: 300,
+        margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
         alignment: Alignment.center,
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Image.network(characterDetailed.imageUrl),
-              SizedBox(height: 15),
-              Text('№' + characterDetailed.id.toString(),
-                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
-              SizedBox(height: 15),
-              Text('Name:'),
-              Text(characterDetailed.name,
-                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
-              SizedBox(height: 15),
-              Text('Status:'),
-              Text(characterDetailed.status,
-                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
-              SizedBox(height: 15),
-              Text('Gender:'),
-              Text(characterDetailed.gender,
-                  style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
-              SizedBox(height: 15),
-              Text('Last known location:'),
-              Text(characterDetailed.locationName,
-                  style: TextStyle(fontSize: 22, color: Colors.blueGrey),
-                  softWrap: true),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(characterDetailed.imageUrl),
+            ),
+            SizedBox(height: 15),
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('№ ' + characterDetailed.id.toString(),
+                        style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
+                    SizedBox(height: 15),
+                    Text('Name:'),
+                    Container(
+                      width: 300,
+                      child: Text(characterDetailed.name,
+                          style:
+                              TextStyle(fontSize: 22, color: Colors.blueGrey),
+                          softWrap: true),
+                    ),
+                    SizedBox(height: 15),
+                    Text('Status:'),
+                    if (characterDetailed.status == 'Dead')
+                      Row(
+                        children: [
+                          Container(
+                            width: 10.0,
+                            height: 10.0,
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          Text(' ' + characterDetailed.status,
+                              style: TextStyle(
+                                  fontSize: 22, color: Colors.blueGrey)),
+                        ],
+                      ),
+                    if (characterDetailed.status == 'Alive')
+                      Row(
+                        children: [
+                          Container(
+                            width: 10.0,
+                            height: 10.0,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          Text(' ' + characterDetailed.status,
+                              style: TextStyle(
+                                  fontSize: 22, color: Colors.blueGrey)),
+                        ],
+                      ),
+                    if (characterDetailed.status == 'unknown')
+                      Row(
+                        children: [
+                          Container(
+                            width: 10.0,
+                            height: 10.0,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          Text(' ' + characterDetailed.status,
+                              style: TextStyle(
+                                  fontSize: 22, color: Colors.blueGrey)),
+                        ],
+                      ),
+                    SizedBox(height: 15),
+                    Text('Gender:'),
+                    Text(characterDetailed.gender,
+                        style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
+                    SizedBox(height: 15),
+                    Text('Last known location:'),
+                    Text(
+                      characterDetailed.locationName,
+                      style: TextStyle(fontSize: 22, color: Colors.blueGrey),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       );
     }
