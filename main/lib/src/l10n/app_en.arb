@@ -1,0 +1,11 @@
+{
+    "rick_and_morty_wiki": "Rick and Morty Wiki",
+    "about_the_character": "About the character",
+    "name": "Name:",
+    "status": "Status:",
+    "dead": "Dead",
+    "aLive": "ALive",
+    "unknown": "unknown",
+    "gender": "Gender:",
+    "last_known_location": "Last known location:"
+}

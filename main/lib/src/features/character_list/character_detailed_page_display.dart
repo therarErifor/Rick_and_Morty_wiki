@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'character_detailed_block.dart';
 
 import 'character_detailed_state.dart';
@@ -19,7 +19,7 @@ class CharacterDetailedPage extends StatelessWidget {
           CharacterRepositoryImp(CharacterRemoteDataSource()), _id),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('about the character'),
+          title: Text(AppLocalizations.of(context)!.about_the_character),
         ),
         body: BlocBuilder<CharacterDetailedBloc, CharacterDetailedState>(
           builder: _BuildCharacterDetailed,
@@ -59,7 +59,7 @@ class CharacterDetailedPage extends StatelessWidget {
                     Text('№ ' + characterDetailed.id.toString(),
                         style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
                     SizedBox(height: 15),
-                    Text('Name:'),
+                    Text(AppLocalizations.of(context)!.name),
                     Container(
                       width: 300,
                       child: Text(characterDetailed.name,
@@ -68,7 +68,7 @@ class CharacterDetailedPage extends StatelessWidget {
                           softWrap: true),
                     ),
                     SizedBox(height: 15),
-                    Text('Status:'),
+                    Text(AppLocalizations.of(context)!.status),
                     if (characterDetailed.status == 'Dead')
                       Row(
                         children: [
@@ -118,11 +118,11 @@ class CharacterDetailedPage extends StatelessWidget {
                         ],
                       ),
                     SizedBox(height: 15),
-                    Text('Gender:'),
+                    Text(AppLocalizations.of(context)!.gender),
                     Text(characterDetailed.gender,
                         style: TextStyle(fontSize: 22, color: Colors.blueGrey)),
                     SizedBox(height: 15),
-                    Text('Last known location:'),
+                    Text(AppLocalizations.of(context)!.last_known_location),
                     Text(
                       characterDetailed.locationName,
                       style: TextStyle(fontSize: 22, color: Colors.blueGrey),

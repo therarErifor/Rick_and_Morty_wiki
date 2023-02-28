@@ -1,0 +1,11 @@
+{
+    "rick_and_morty_wiki": "Рик и Морти Вики",
+    "about_the_character": "О персонаже",
+    "name": "Имя:",
+    "status": "Статус:",
+    "dead": "Мертв",
+    "aLive": "Жив",
+    "unknown": "неизвестно",
+    "gender": "Пол:",
+    "last_known_location": "Последнее местоположение:"
+}

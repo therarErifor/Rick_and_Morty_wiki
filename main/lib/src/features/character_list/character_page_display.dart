@@ -7,7 +7,7 @@ import 'character_detailed_page_display.dart';
 import 'character_events.dart';
 import 'character_state.dart';
 import '../../entities/character.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class CharacterPage extends StatelessWidget {
   late ScrollController _scrollController;
 
@@ -32,7 +32,7 @@ class CharacterPage extends StatelessWidget {
           CharacterBloc(CharacterRepositoryImp(CharacterRemoteDataSource())),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Rick and Morty Wiki'),
+          title: Text(AppLocalizations.of(context)!.rick_and_morty_wiki),
         ),
         body: BlocBuilder<CharacterBloc, CharacterState>(
           builder: _buildBody,
