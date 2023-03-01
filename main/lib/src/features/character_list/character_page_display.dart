@@ -2,12 +2,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
+import '../../dependencies_config.dart';
 import 'character_block.dart';
 import 'character_detailed_page_display.dart';
 import 'character_events.dart';
 import 'character_state.dart';
 import '../../entities/character.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class CharacterPage extends StatelessWidget {
   late ScrollController _scrollController;
 
@@ -28,8 +30,7 @@ class CharacterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CharacterBloc>(
-      create: (_) =>
-          CharacterBloc(CharacterRepositoryImp(CharacterRemoteDataSource())),
+      create: (_) => container<CharacterBloc>(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.rick_and_morty_wiki),
@@ -96,8 +97,9 @@ class CharacterPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) =>
-                        CharacterDetailedPage(character[index - 1].id)),
+                  builder: (_) =>
+                      CharacterDetailedPage(character[index - 1].id),
+                ),
               );
             },
           ),

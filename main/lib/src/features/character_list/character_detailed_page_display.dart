@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
+import 'package:rick_and_morty_wiki/src/features/character_list/character_detailed_event.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../dependencies_config.dart';
 import 'character_detailed_block.dart';
 
 import 'character_detailed_state.dart';
@@ -15,8 +17,9 @@ class CharacterDetailedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CharacterDetailedBloc>(
-      create: (_) => CharacterDetailedBloc(
-          CharacterRepositoryImp(CharacterRemoteDataSource()), _id),
+        create: (_) => container<CharacterDetailedBloc>(param1: _id),
+      // create: (_) => CharacterDetailedBloc(
+      //     CharacterRepositoryImp(CharacterRemoteDataSource()), _id),
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.about_the_character),
@@ -30,12 +33,14 @@ class CharacterDetailedPage extends StatelessWidget {
 
   Widget _BuildCharacterDetailed(
       BuildContext context, CharacterDetailedState state) {
+
     if (state is InitCharacterDetailedState) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
     if (state is CharacterDetailedLoadState) {
+
       var characterDetailed = state.characterDetailed;
       return Container(
         width: 300,

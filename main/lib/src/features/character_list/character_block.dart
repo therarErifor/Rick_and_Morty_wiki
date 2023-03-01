@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import '../../entities/character.dart';
 import '../../repositories/character_repository.dart';
 import 'character_events.dart';
 import 'character_state.dart';
 
+@Injectable()
 class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
   final CharacterRepository _characterRepository;
   late int _currentPage; //текущая страница
