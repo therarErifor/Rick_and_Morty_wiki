@@ -27,27 +27,34 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     if (state is CharacterNextPageLoading) {
       return;
     }
-
     var nextPageNumber = _currentPage + 1;
 
     if (nextPageNumber < _pagesCount) {
       emit(CharacterNextPageLoading(character: _characterLoaded));
-      var characterPage =
+      var bothCharacterPage =
           await _characterRepository.getCharacterAsync(nextPageNumber);
-
-      _currentPage = nextPageNumber;
-      _characterLoaded.addAll(characterPage.character);
-
-      emit(CharacterLoadState(character: _characterLoaded));
+      final characterPage = bothCharacterPage.data;
+      if (characterPage != null) {
+        _currentPage = nextPageNumber;
+        _characterLoaded.addAll(characterPage.character);
+        emit(CharacterLoadState(character: _characterLoaded));
+      }else{
+        emit (NetworkError());
+      }
     }
   }
 
   void _init() async {
     _currentPage = 1;
-    var characterPage =
+    var bothCharacterPage =
         await _characterRepository.getCharacterAsync(_currentPage);
-    _pagesCount = characterPage.pagesCount;
-    _characterLoaded.addAll(characterPage.character);
-    emit(CharacterLoadState(character: _characterLoaded));
+    final characterPage = bothCharacterPage.data;
+    if (characterPage != null) {
+      _pagesCount = characterPage.pagesCount;
+      _characterLoaded.addAll(characterPage.character);
+      emit(CharacterLoadState(character: _characterLoaded));
+    }else{
+      emit (NetworkError());
+    }
   }
 }

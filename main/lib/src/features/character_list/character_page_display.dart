@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
-import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
+import '../../common/error_messages.dart';
 import '../../dependencies_config.dart';
 import 'character_block.dart';
 import 'character_detailed_page_display.dart';
@@ -21,7 +20,7 @@ class CharacterPage extends StatelessWidget {
         //двойная точка - это конструкция
         var extentPosition = _scrollController.position.extentAfter;
 
-        if (extentPosition < 600) {
+        if (extentPosition < 700) {
           _bloc?.add(LoadMoreEvent());
         }
       });
@@ -44,9 +43,20 @@ class CharacterPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context, CharacterState state) {
     _bloc = context.read<CharacterBloc>();
+
     if (state is InitCharacterState) {
       return const Center(
         child: CircularProgressIndicator(),
+      );
+    }
+
+    if (state is NetworkError) {
+      NoConnect noConnect = NoConnect();
+      String message = noConnect.getNoConnectMessage();
+      return const Center(
+        child: Card(
+          child: Text('no internet'),
+        ),
       );
     } else if (state is CharacterListState) {
       return Column(
@@ -65,7 +75,6 @@ class CharacterPage extends StatelessWidget {
         ],
       );
     }
-
     return const SizedBox.shrink();
   }
 

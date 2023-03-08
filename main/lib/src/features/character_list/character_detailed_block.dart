@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import '../../repositories/character_repository.dart';
 import 'character_detailed_event.dart';
@@ -11,7 +10,6 @@ class CharacterDetailedBloc
   final CharacterRepository _characterRepository;
 
   late int _characterId;
-
 
   CharacterDetailedBloc(CharacterRepository characterRepository,@factoryParam int id)
       : _characterRepository = characterRepository,

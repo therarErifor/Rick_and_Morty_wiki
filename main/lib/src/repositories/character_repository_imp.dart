@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
+import 'package:rick_and_morty_wiki/src/common/errors.dart';
 import 'package:rick_and_morty_wiki/src/entities/character.dart';
 import 'package:rick_and_morty_wiki/src/entities/character_detailed.dart';
 
 import 'package:rick_and_morty_wiki/src/repositories/character_repository.dart';
-
 import '../data_source/character_data_source.dart';
 import '../entities/character_page.dart';
 
@@ -15,13 +15,20 @@ class CharacterRepositoryImp extends CharacterRepository {
       : _characterDataSource = characterDataSource;
 
   @override
-  Future<CharacterPage> getCharacterAsync(int pageNumber) async {
-    var pageDto = await _characterDataSource.getPageAsync(pageNumber);
-    var character = pageDto.results
-        .map((dto) =>
-            Character(id: dto.id ?? 0, name: dto.name, imageUrl: dto.image))
-        .toList();
-    return CharacterPage(character: character, pagesCount: pageDto.info.pages);
+  Future<Both<CharacterPage>> getCharacterAsync(int pageNumber) async {
+    final _both = await _characterDataSource.getPageAsync(pageNumber);
+    final pageDto = _both.data;
+    if ((_both.isSuccessTheBoth == true)&&(_both.data != null)&&(pageDto != null)) {
+      var character = pageDto.results
+          .map((dto) =>
+              Character(id: dto.id ?? 0, name: dto.name, imageUrl: dto.image))
+          .toList();
+      return Both(
+          CharacterPage(character: character, pagesCount: pageDto.info.pages),
+          null);
+    } else {
+      return Both(null, _both.error);
+    }
   }
 
 //id ?? 0 Сравнение с нулем

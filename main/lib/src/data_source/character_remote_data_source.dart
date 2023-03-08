@@ -1,12 +1,11 @@
+import 'dart:io';
+
 import 'package:injectable/injectable.dart';
+import 'package:rick_and_morty_wiki/src/common/error_messages.dart';
 import 'package:rick_and_morty_wiki/src/data_source/character_data_source.dart';
 import 'package:rick_and_morty_wiki/src/data_source/dto/character_detailed_dto.dart';
 import 'package:dio/dio.dart';
-import 'package:rick_and_morty_wiki/src/data_source/character_data_source.dart';
-import 'package:rick_and_morty_wiki/src/data_source/dto/character_detailed_dto.dart';
-import 'package:rick_and_morty_wiki/src/data_source/dto/character_dto.dart';
-import 'package:rick_and_morty_wiki/src/data_source/dto/info_dto.dart';
-
+import '../common/errors.dart';
 import 'dto/page_dto.dart';
 
 @Singleton(as: CharacterDataSource)
@@ -19,14 +18,28 @@ class CharacterRemoteDataSource implements CharacterDataSource {
   }
 
   @override
-  Future<PageDto> getPageAsync(int pageNumber) async {
-    var response = await _dioClient.get('/api/character?page=$pageNumber');
-    return PageDto.fromJson(response.data);
+  Future<Both<PageDto>> getPageAsync(int pageNumber) async {
+
+    try {
+      var response = await _dioClient.get('/api/character?page=$pageNumber');
+      return Both.fromData(PageDto.fromJson(response.data));
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return Both.fromError(NoConnect().getNoConnectMessage());
+      }
+      rethrow;
+    }
   }
 
   @override
   Future<CharacterDetailedDto> getCharacterDetailedAsync(int id) async {
     var response = await _dioClient.get('/api/character/$id');
     return CharacterDetailedDto.fromJson(response.data);
+  }
+}
+
+extension DioErrorX on DioError{
+  bool get isNoConnectionError{
+    return this.type == DioErrorType.other && error is SocketException;
   }
 }
