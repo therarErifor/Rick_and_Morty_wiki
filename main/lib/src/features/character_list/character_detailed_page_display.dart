@@ -4,6 +4,7 @@ import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source
 import 'package:rick_and_morty_wiki/src/features/character_list/character_detailed_event.dart';
 import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../common/error_messages.dart';
 import '../../dependencies_config.dart';
 import 'character_detailed_block.dart';
 
@@ -33,12 +34,23 @@ class CharacterDetailedPage extends StatelessWidget {
 
   Widget _BuildCharacterDetailed(
       BuildContext context, CharacterDetailedState state) {
-
     if (state is InitCharacterDetailedState) {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    }
+    }if(state is DetailedNetworkError){
+      return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.signal_cellular_connected_no_internet_0_bar, size: 45),
+              SizedBox(height: 20),
+              Text(NoConnect().text,
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 18)),
+              SizedBox(height: 20),
+            ],
+          ));
+  }else
     if (state is CharacterDetailedLoadState) {
 
       var characterDetailed = state.characterDetailed;

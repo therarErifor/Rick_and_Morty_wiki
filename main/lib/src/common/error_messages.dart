@@ -1,9 +1,13 @@
-abstract class ErrorMessage {}
+abstract class ErrorMessage {
+  final String text;
+
+  ErrorMessage({required this.text});
+}
 
 class NoConnect extends ErrorMessage {
-  String noConnect = 'no internet connection';
+  NoConnect() : super(text: 'No internet connection');
+}
 
-  getNoConnectMessage() {
-    return noConnect;
-  }
+class SeveredConnection extends ErrorMessage {
+  SeveredConnection() : super(text: 'The connection was severed');
 }

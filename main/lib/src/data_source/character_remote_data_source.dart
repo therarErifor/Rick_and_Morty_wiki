@@ -19,27 +19,33 @@ class CharacterRemoteDataSource implements CharacterDataSource {
 
   @override
   Future<Both<PageDto>> getPageAsync(int pageNumber) async {
-
     try {
       var response = await _dioClient.get('/api/character?page=$pageNumber');
       return Both.fromData(PageDto.fromJson(response.data));
     } on DioError catch (e) {
       if (e.isNoConnectionError) {
-        return Both.fromError(NoConnect().getNoConnectMessage());
+        return Both.fromError(NoConnect());
       }
       rethrow;
     }
   }
 
   @override
-  Future<CharacterDetailedDto> getCharacterDetailedAsync(int id) async {
-    var response = await _dioClient.get('/api/character/$id');
-    return CharacterDetailedDto.fromJson(response.data);
+  Future<Both<CharacterDetailedDto>> getCharacterDetailedAsync(int id) async {
+    try {
+      var response = await _dioClient.get('/api/character/$id');
+      return Both.fromData(CharacterDetailedDto.fromJson(response.data));
+    } on DioError catch (e) {
+      if (e.isNoConnectionError) {
+        return Both.fromError(NoConnect());
+      }
+      rethrow;
+    }
   }
 }
 
-extension DioErrorX on DioError{
-  bool get isNoConnectionError{
+extension DioErrorX on DioError {
+  bool get isNoConnectionError {
     return this.type == DioErrorType.other && error is SocketException;
   }
 }

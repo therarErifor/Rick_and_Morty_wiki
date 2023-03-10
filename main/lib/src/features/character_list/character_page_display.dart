@@ -51,13 +51,22 @@ class CharacterPage extends StatelessWidget {
     }
 
     if (state is NetworkError) {
-      NoConnect noConnect = NoConnect();
-      String message = noConnect.getNoConnectMessage();
-      return const Center(
-        child: Card(
-          child: Text('no internet'),
-        ),
-      );
+      return Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.signal_cellular_connected_no_internet_0_bar, size: 45),
+          SizedBox(height: 20),
+          Text(NoConnect().text,
+              style: TextStyle(color: Colors.blueGrey, fontSize: 18)),
+          SizedBox(height: 20),
+          ElevatedButton(
+              onPressed: () {
+                _bloc?.add(UpdatePage());
+              },
+              child: Text('Try to download again'))
+        ],
+      ));
     } else if (state is CharacterListState) {
       return Column(
         children: <Widget>[

@@ -18,7 +18,7 @@ class CharacterRepositoryImp extends CharacterRepository {
   Future<Both<CharacterPage>> getCharacterAsync(int pageNumber) async {
     final _both = await _characterDataSource.getPageAsync(pageNumber);
     final pageDto = _both.data;
-    if ((_both.isSuccessTheBoth == true)&&(_both.data != null)&&(pageDto != null)) {
+    if ((_both.isSuccessTheBoth == true) && (pageDto != null)) {
       var character = pageDto.results
           .map((dto) =>
               Character(id: dto.id ?? 0, name: dto.name, imageUrl: dto.image))
@@ -33,16 +33,23 @@ class CharacterRepositoryImp extends CharacterRepository {
 
 //id ?? 0 Сравнение с нулем
   @override
-  Future<CharacterDetailed> getDetailedAsync(int id) async {
-    var dtoCharacterDetailed =
-        await _characterDataSource.getCharacterDetailedAsync(id);
-
-    return CharacterDetailed(
-        id: dtoCharacterDetailed.id ?? 0,
-        name: dtoCharacterDetailed.name,
-        imageUrl: dtoCharacterDetailed.image,
-        status: dtoCharacterDetailed.status,
-        gender: dtoCharacterDetailed.gender,
-        locationName: dtoCharacterDetailed.location.name);
+  Future<Both<CharacterDetailed>> getDetailedAsync(int id) async {
+    // var dtoCharacterDetailed =
+    //     await _characterDataSource.getCharacterDetailedAsync(id);
+    final _both = await _characterDataSource.getCharacterDetailedAsync(id);
+    final dtoCharacterDetailed = _both.data;
+    if ((_both.isSuccessTheBoth == true) && (dtoCharacterDetailed != null)) {
+      return Both(
+          CharacterDetailed(
+              id: dtoCharacterDetailed.id ?? 0,
+              name: dtoCharacterDetailed.name,
+              imageUrl: dtoCharacterDetailed.image,
+              status: dtoCharacterDetailed.status,
+              gender: dtoCharacterDetailed.gender,
+              locationName: dtoCharacterDetailed.location.name),
+          null);
+    } else {
+      return Both(null, _both.error);
+    }
   }
 }
