@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
-import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
+import '../../common/error_messages.dart';
 import '../../dependencies_config.dart';
 import 'character_block.dart';
 import 'character_detailed_page_display.dart';
@@ -21,7 +20,7 @@ class CharacterPage extends StatelessWidget {
         //двойная точка - это конструкция
         var extentPosition = _scrollController.position.extentAfter;
 
-        if (extentPosition < 600) {
+        if (extentPosition < 700) {
           _bloc?.add(LoadMoreEvent());
         }
       });
@@ -44,10 +43,30 @@ class CharacterPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context, CharacterState state) {
     _bloc = context.read<CharacterBloc>();
+
     if (state is InitCharacterState) {
       return const Center(
         child: CircularProgressIndicator(),
       );
+    }
+
+    if (state is NetworkError) {
+      return Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.signal_cellular_connected_no_internet_0_bar, size: 45),
+          SizedBox(height: 20),
+          Text(NoConnect().text,
+              style: TextStyle(color: Colors.blueGrey, fontSize: 18)),
+          SizedBox(height: 20),
+          ElevatedButton(
+              onPressed: () {
+                _bloc?.add(UpdatePage());
+              },
+              child: Text('Try to download again'))
+        ],
+      ));
     } else if (state is CharacterListState) {
       return Column(
         children: <Widget>[
@@ -65,7 +84,6 @@ class CharacterPage extends StatelessWidget {
         ],
       );
     }
-
     return const SizedBox.shrink();
   }
 

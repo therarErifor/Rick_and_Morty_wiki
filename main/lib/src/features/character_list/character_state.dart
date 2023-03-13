@@ -4,6 +4,9 @@ abstract class CharacterState {}
 
 class InitCharacterState extends CharacterState {}
 
+class NetworkError extends CharacterState{
+}
+
 class CharacterListState extends CharacterState {
   final List<Character> character;
 
