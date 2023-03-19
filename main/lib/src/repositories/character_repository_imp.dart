@@ -34,8 +34,6 @@ class CharacterRepositoryImp extends CharacterRepository {
 //id ?? 0 Сравнение с нулем
   @override
   Future<Both<CharacterDetailed>> getDetailedAsync(int id) async {
-    // var dtoCharacterDetailed =
-    //     await _characterDataSource.getCharacterDetailedAsync(id);
     final _both = await _characterDataSource.getCharacterDetailedAsync(id);
     final dtoCharacterDetailed = _both.data;
     if ((_both.isSuccessTheBoth == true) && (dtoCharacterDetailed != null)) {

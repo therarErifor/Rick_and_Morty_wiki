@@ -7,5 +7,7 @@
     "aLive": "Жив",
     "unknown": "неизвестно",
     "gender": "Пол:",
-    "last_known_location": "Последнее местоположение:"
+    "last_known_location": "Последнее местоположение:",
+    "please_wait": "Пожалуйста, подождите...",
+    "try_to_download_again": "Попробуйте загрузиться снова"
 }

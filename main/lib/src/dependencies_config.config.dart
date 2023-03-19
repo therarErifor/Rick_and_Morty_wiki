@@ -11,9 +11,9 @@ import 'package:rick_and_morty_wiki/src/data_source/character_data_source.dart'
     as _i3;
 import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart'
     as _i4;
-import 'package:rick_and_morty_wiki/src/features/character_list/character_block.dart'
+import 'package:rick_and_morty_wiki/src/features/character_list/character_cubit.dart'
     as _i7;
-import 'package:rick_and_morty_wiki/src/features/character_list/character_detailed_block.dart'
+import 'package:rick_and_morty_wiki/src/features/character_list/character_detailed_cubit.dart'
     as _i8;
 import 'package:rick_and_morty_wiki/src/repositories/character_repository.dart'
     as _i5;

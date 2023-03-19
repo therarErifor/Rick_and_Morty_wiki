@@ -7,5 +7,7 @@
     "aLive": "ALive",
     "unknown": "unknown",
     "gender": "Gender:",
-    "last_known_location": "Last known location:"
+    "last_known_location": "Last known location:",
+    "please_wait": "Please Wait...",
+    "try_to_download_again": "Try to download again"
 }

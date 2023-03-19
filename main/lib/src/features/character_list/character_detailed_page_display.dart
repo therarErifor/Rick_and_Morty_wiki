@@ -1,12 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_wiki/src/data_source/character_remote_data_source.dart';
-import 'package:rick_and_morty_wiki/src/features/character_list/character_detailed_event.dart';
-import 'package:rick_and_morty_wiki/src/repositories/character_repository_imp.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../common/error_messages.dart';
 import '../../dependencies_config.dart';
-import 'character_detailed_block.dart';
+import 'character_detailed_cubit.dart';
 
 import 'character_detailed_state.dart';
 
@@ -18,7 +15,7 @@ class CharacterDetailedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CharacterDetailedBloc>(
-        create: (_) => container<CharacterDetailedBloc>(param1: _id),
+      create: (_) => container<CharacterDetailedBloc>(param1: _id),
       // create: (_) => CharacterDetailedBloc(
       //     CharacterRepositoryImp(CharacterRemoteDataSource()), _id),
       child: Scaffold(
@@ -38,21 +35,20 @@ class CharacterDetailedPage extends StatelessWidget {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    }if(state is DetailedNetworkError){
+    }
+    if (state is DetailedNetworkError) {
       return Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.signal_cellular_connected_no_internet_0_bar, size: 45),
-              SizedBox(height: 20),
-              Text(NoConnect().text,
-                  style: TextStyle(color: Colors.blueGrey, fontSize: 18)),
-              SizedBox(height: 20),
-            ],
-          ));
-  }else
-    if (state is CharacterDetailedLoadState) {
-
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.signal_cellular_connected_no_internet_0_bar, size: 45),
+          SizedBox(height: 20),
+          Text(NoConnect().text,
+              style: TextStyle(color: Colors.blueGrey, fontSize: 18)),
+          SizedBox(height: 20),
+        ],
+      ));
+    } else if (state is CharacterDetailedLoadState) {
       var characterDetailed = state.characterDetailed;
       return Container(
         width: 300,
