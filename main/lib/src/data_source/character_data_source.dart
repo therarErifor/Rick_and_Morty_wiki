@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-
 import '../common/errors.dart';
 import 'dto/character_detailed_dto.dart';
 

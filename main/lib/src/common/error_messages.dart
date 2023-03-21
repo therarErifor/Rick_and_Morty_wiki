@@ -7,7 +7,3 @@ abstract class ErrorMessage {
 class NoConnect extends ErrorMessage {
   NoConnect() : super(text: 'No internet connection');
 }
-
-class SeveredConnection extends ErrorMessage {
-  SeveredConnection() : super(text: 'The connection was severed');
-}
