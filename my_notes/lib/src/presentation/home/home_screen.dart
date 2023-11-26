@@ -12,8 +12,8 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.grey.shade100,
       bottomNavigationBuilder: (_, tabsRouter) {
         return Container(
-          padding: EdgeInsets.symmetric(horizontal: 60),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.symmetric(horizontal: 60),
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               color: Colors.white),
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             selectedItemColor: Colors.green,
             currentIndex: tabsRouter.activeIndex,
             onTap: tabsRouter.setActiveIndex,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                   icon: Icon(Icons.insert_drive_file_outlined, size: 30), label: ''),
               BottomNavigationBarItem(
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
-      routes: [NotesRoute(), TasksRoute()],
+      routes: const [NotesRoute(), TasksRoute()],
     );
   }
 }

@@ -40,21 +40,67 @@ class NotesPage extends StatelessWidget {
     if (state is NotesScreenState) {
       return _buildHomeScreen(context, state);
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   Widget _buildHomeScreen(BuildContext context, NotesScreenState state) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.height,
-        height: MediaQuery.of(context).size.height,
-        margin: EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 40),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade200,
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool searchFieldIsScrolled) {
+            return <Widget> [
+              SliverAppBar(
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                title: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  height: 60,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: const Icon(Icons.search),
+                      label: const Text("Search"),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                          const BorderSide(color: Colors.white, width: 0),
+                          borderRadius: BorderRadius.circular(10)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                          const BorderSide(color: Colors.white, width: 0),
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  ),
+                ),
+              )
+            ];
+          },
+          body: Container(
+            width: MediaQuery.of(context).size.height,
+            margin: const EdgeInsets.all(10),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: const ListTile(
+                      title: Text('This is tittle'),
+                      subtitle: Text('This is subtittle'),
+                      leading: VerticalDivider(thickness: 1, color: Colors.green,),
+                      trailing: Text('This is trailing'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

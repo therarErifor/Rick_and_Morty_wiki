@@ -15,6 +15,10 @@ class _NotesAppState extends State<NotesApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(
+          primarySwatch: Colors.green,
+
+      ),
       debugShowCheckedModeBanner: false,
       routerConfig: _appRouter.config(
           navigatorObservers: () => [
