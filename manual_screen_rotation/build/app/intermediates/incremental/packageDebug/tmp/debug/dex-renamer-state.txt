@@ -1,0 +1,4 @@
+#Tue May 07 22:31:44 YEKT 2024
+base.0=/home/erifor/repositories/manual_screen_rotation/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
